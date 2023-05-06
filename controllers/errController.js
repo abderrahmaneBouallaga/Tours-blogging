@@ -7,7 +7,6 @@ const handleCastErrorDB = err => {
 
 const handleDuplicateFieldsDB = err => {
   const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
-  console.log(value);
 
   const message = `Duplicate field value: ${value}. Please use another value!`;
   return new AppError(message, 400);
@@ -63,7 +62,6 @@ module.exports = (err, req, res, next) => {
     if (err.code === 11000) err = handleDuplicateFieldsDB(err);
     if (err.name === 'ValidationError')
      err = handleValidationErrorDB(err);
-    console.log(err.name)
     sendErrorProd(err, res);
   }
 };
