@@ -136,15 +136,14 @@ exports.forgotPasswrod = catchAsync(async (req, res, next) => {
   } catch (err) {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
-    console.log(err)
+ 
     return next(
-      new AppError('There was an error sending the email. try again later!'),
-      500
+      new AppError('There was an error sending the email. try again later!', 500)
     );
   }
 });
 
-exports.restPassword = catchAsync(async (req, res, next) => {
+exports.resetPassword = catchAsync(async (req, res, next) => {
   // 1. Get user based on the token
   const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
 
