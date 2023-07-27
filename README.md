@@ -1,2 +1,2 @@
-# natour
-Learning node js / express and mongodb with mongoose
+# Tours Blogging
+Node js / express and mongodb with mongoose
